@@ -1,0 +1,29 @@
+{
+  "name": "Elsewhere",
+  "identifier": "io.github.elsewhere.source",
+  "subtitle": "Change your iPhone's location for every app.",
+  "website": "https://github.com/rishi-sangare/elsewhere",
+  "apps": [
+    {
+      "name": "Elsewhere",
+      "bundleIdentifier": "io.github.elsewhere.app",
+      "developerName": "Elsewhere contributors",
+      "subtitle": "Teleport or drive anywhere — system-wide.",
+      "localizedDescription": "Tap the map to change the location every app sees, or drive a route at your own speed with realistic traffic. Verified status, instant alerts if your real location becomes visible, and a lock-screen Stop button. Requires iOS 17.4+, Developer Mode, LocalDevVPN and a pairing file.",
+      "iconURL": "https://raw.githubusercontent.com/rishi-sangare/elsewhere/main/docs/icon.png",
+      "tintColor": "#587AF9",
+      "category": "utilities",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "date": "2026-10-10",
+          "localizedDescription": "First public test build.",
+          "downloadURL": "https://github.com/rishi-sangare/elsewhere/releases/download/v0.1.0/Elsewhere.ipa",
+          "minOSVersion": "17.4"
+        }
+      ],
+      "appPermissions": { "entitlements": [], "privacy": {} }
+    }
+  ],
+  "news": []
+}

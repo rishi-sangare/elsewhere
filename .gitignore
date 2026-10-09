@@ -1,0 +1,12 @@
+.DS_Store
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+.swiftpm/
+Packages/*/.build/
+Vendor/IDevice/*.xcframework
+Vendor/IDevice/*.zip
+*.ipa
+__pycache__/
+Elsewhere.xcodeproj/

@@ -1,0 +1,30 @@
+1. SESSION SAFETY  (5000 randomized 15-minute sessions with injected faults)
+   faults: tunnel drops ~every 3 min, 40% VPN outages, 25% app killed by iOS
+
+   naive design
+     I1 worst 'green' while phone showed REAL location :    0.5 s
+     I2 worst time real location exposed, user not told:  894.5 s
+        sessions where user was not told for >15 s     : 4939 / 5000
+     I3 worst 'green' after Stop                       :    0.0 s
+
+   Elsewhere design
+     I1 worst 'green' while phone showed REAL location :    1.0 s
+     I2 worst time real location exposed, user not told:   10.5 s
+        sessions where user was not told for >15 s     : 0 / 5000
+     I3 worst 'green' after Stop                       :    0.0 s
+
+2. MOTION ENGINE  (8 km synthetic city route, user picks 40 km/h)
+
+   traffic    time    avg speed   max speed   max |accel|   stops
+   none       12.6 min   38.2 km/h   40.0 km/h   2.50 m/s²     0
+   light      15.0 min   32.2 km/h   39.3 km/h   2.60 m/s²     4
+   moderate   18.3 min   26.4 km/h   38.4 km/h   2.50 m/s²     6
+   heavy      31.4 min   15.4 km/h   37.5 km/h   2.50 m/s²     15
+   check: max speed never exceeds 40 km/h, accel stays ~2.5 m/s² (normal car braking)
+
+3. GPS JITTER  (car parked; what speed does iOS derive from 1 Hz fixes?)
+
+   white noise ±3 m         median phantom speed  18.1 km/h, 95th pct  37.7 km/h
+   correlated AR(1) ±3 m    median phantom speed   4.1 km/h, 95th pct   8.4 km/h
+   => random noise makes a parked phone look like it's driving; use AR(1) while moving, freeze when parked
+

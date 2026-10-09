@@ -1,0 +1,13 @@
+name: Tests
+on:
+  push:
+  pull_request:
+jobs:
+  spoofkit:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: SpoofKit unit + fault-injection tests
+        run: swift test --package-path Packages/SpoofKit
+      - name: Design simulation
+        run: python3 tools/design_sim.py

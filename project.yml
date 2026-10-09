@@ -1,0 +1,71 @@
+name: Elsewhere
+options:
+  bundleIdPrefix: io.github.elsewhere
+  deploymentTarget:
+    iOS: "17.4"
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+packages:
+  SpoofKit:
+    path: Packages/SpoofKit
+targets:
+  Elsewhere:
+    type: application
+    platform: iOS
+    sources:
+      - App
+      - Shared
+    dependencies:
+      - target: ElsewhereWidgets
+      - package: SpoofKit
+      - framework: Vendor/IDevice/IDevice.xcframework
+        embed: false
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Elsewhere
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIBackgroundModes: [location, audio]
+        NSLocationWhenInUseUsageDescription: "Elsewhere reads back the location iOS is reporting to confirm your chosen location is really active."
+        NSLocationAlwaysAndWhenInUseUsageDescription: "Allow 'Always' so Elsewhere can keep verifying your chosen location while you use other apps, and warn you if your real location becomes visible."
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        NSSupportsLiveActivities: true
+        LSSupportsOpeningDocumentsInPlace: false
+        UIFileSharingEnabled: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.elsewhere.app
+        PRODUCT_NAME: Elsewhere
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: YES
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+  ElsewhereWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Widgets
+      - Shared
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: Elsewhere
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.elsewhere.app.widgets
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        SKIP_INSTALL: YES
